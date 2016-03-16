@@ -1,0 +1,25 @@
+La selección adecuada de los parámetros para un generador congruencial mixto, se basa en el siguiente teorema, debido a HULL-DODELL:
+“el generador congruencial mixto tiene periodo completo si y sólo si:
+a) El número entero positivo que divide (exactamente) a a y m, es 1 (lo que significa que c es relativamente primo a m).
+b) Si q es un número primo que divide a m, entonces, q divide a (a-1).
+c) Si 4 divide a m, entonces 4 divide a (a-1)”.
+
+SELECCIÓN DE LOS PARÁMETROS DEL GENERADOR CONGRUENCIAL MIXTO
+SELECCIÓN DE m. Seleccionar m de modo que sea el número primo más grande posible y que a su vez sea menor que p, donde:
+p es la base del sistema binario y
+d es el número de bits de la palabra de la computadora. Por ejemplo 231.
+
+SELECCION DE a. Preferentemente selecciónese a a de tal manera que
+I) (a-1) mod 4 = 0, si 4 es un factor de m.
+II) (a-1) mod b = 0, si b es un factor primo de m.
+
+Usualmente, el valor de a se toma como a = 2k +1 ; k>=2
+SELECCION DE c. Es recomendable escoger c tal que c mod 8 = 5
+SELECCION DE X0. La selección de X0 es irrelevante. 
+
+Selección de los parámetros del generador congruencial MULTIPLICATIVO
+SELECCION DE a. Debe seleccionarse el valor de a de la forma siguiente:
+a = 8t +- 3 donde t es cualquier entero positivo.
+SELECCION DE m. Este valor se selecciona de tal manera que: m =2d, 
+donde d es el número de bits de la palabra de la computadora.
+SELECION DE X0. Tómese X0 impar, relativamente primo a m.
