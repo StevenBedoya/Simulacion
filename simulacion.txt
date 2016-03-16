@@ -1,0 +1,182 @@
+SIMULACIÓN 
+Simulación implica crear un modelo que aproxima cierto aspecto de un sistema del mundo real y que puede ser usado para generar historias artificiales del sistema, de forma tal que nos permite predecir cierto aspecto del comportamiento del sistema. 
+En particular, usaremos computadores para imitar comportamientos del sistemas evaluando numericamente un modelo del mismo. Estas evaluaciones numericas son las que nos permiten generar las historias artificiales que no son mas que experimentos. 
+Modelo 
+Un modelo es una representación de un objeto, idea, o sistema en una forma diferente a la entidad misma. En nuestro caso el modelo es un conjunto de relaciones matemáticas o lógicas derivadas de supuestos sobre el comportamiento del sistema. 
+¿Para que? 
+Simulamos para explicar, entender o mejorar el sistema. 
+Ejemplo:  
+El diseño de un procesador involucra miles o millones de compuertas lógicas interconectadas. El proceso de crear el primer chip es sumamente costoso y no es posible darse el lujo de construir varios chips y luego verificar su funcionamiento. Lo que se hace es modelar el procesador y verificar su funcionamiento usando simulación. 
+¿Cuando? 
+a)	El sistema real no existe. Es costoso, peligroso, consume mucho tiempo, o imposible de construir y experimentar con prototipos (nuevo computador o procesador, reactor nuclear). 
+b)	Experimentar con el sistema real es complicado, costoso, peligroso, o puede causar serios desajustes (sistema de transporte, sistema de manufactura, reactor nuclear). 
+c)	Necesidad de estudiar el pasado, presente, o futuro del sistema en tiempo real, tiempo expandido, o tiempo comprimido (sistemas de control a tiempo real, estudios en cámara lenta, crecimiento poblacional). 
+d)	Es sistema es tan complejo que su evaluación analítica es prohibitiva, bien sea porque el modelado matemático es imposible, o porque el modelado matemático no tiene solución analítica o numérica simple y practica (colas de espera, ecuaciones diferenciales no lineales, problemas estocásticos). 
+e)	Se puede validar satisfactoriamente el modelo de simulación. 
+ 
+Se podría decir “Simular cuando todo lo demás falla”, pero esto no es excusa para usar simulación inadecuadamente. 
+
+Las areas de aplicacion de la simulacion son numerosas y entre ellas estan: 
+•	Diseño y analisis de sistemas de produccion. 
+•	Analisis de sistemas finacieros o economicos. 
+•	Evaluacion de software y hardware. 
+•	Evaluacion de sistemas de armamaneto militar o sistemas tacticos. 
+•	Determinacion de politicas de inventario. 
+•	Manejo de bosques. 
+•	Diseño de sistemas de comunicacion y protocolos  
+•	Diseño de sistemas de transporte. 
+•	Evaluacion de diseños de organizaciones como hospitales, comedores, servicios de correo, etc. 
+I. ERRORES COMUNES EN SIMULACIÓN 
+1. Nivel de detalle inapropiado 
+Un modelo analítico es menos detallado que un modelo de simulación. Análisis requiere de muchos supuestos y simplificaciones. El detalle en un modelo de simulación esta limitado por el tiempo disponible para desarrollarlo. 
+Mas detalle 	⇒ 	mas tiempo 
+ 	 	 	⇒ 	incrementa la posibilidad de errores y es mas difícil detectarlos 
+ 	 	 	⇒ 	incrementa el tiempo de corrida del modelo 
+ 
+¡Mas detalle no necesariamente es mejor! 
+Mas detalle requiere mas conocimiento de los parámetros de entrada, que si no están disponibles pueden hacer el modelo mas inexacto. 
+Ejemplo: 
+Supongamos que en la simulación de un sistema de tiempo compartido (timesharing) debemos simular el tiempo requerido para satisfacer accesos a disco. Una opción es generarlos usando una distribución exponencial. Una alternativa mas detallada seria simular el movimiento de los cabezales y la rotación del disco. En la segunda alternativa se pueden tener mejores resultados solo si conocemos las referencias a sectores y pistas. Sin embargo, si esta información no esta disponible a la hora de la entrada de datos, hay que terminar generándolos exponencialmente y hubiese sido menos costoso irse por la primera alternativa. 
+ 
+Es mejor partir de un modelo sencillo, obtener resultados, estudiar la sensibilidad, e introducir mas detalles en las áreas que impactan mas los resultados. 
+2.	Lenguaje inapropiado 
+Lenguajes de simulación de propósito especial requieren menos tiempo para implementar el modelo y facilitan actividades como verificación (mediante el uso de opciones de trazado) y de análisis estadístico. Lenguajes de propósito general son mas portables y proveen mejor control sobre la eficiencia y el tiempo de corrida de la simulación. 
+3.	Modelos no verificados 
+Los modelos de simulación son generalmente programas grandes, que si no se tienen las precauciones respectivas, es posible tener errores de programación que hagan las conclusiones sin sentido. 
+4.	Modelos inválidos 
+Aun cuando no hayan errores de programación, puede que el modelo no represente al sistema real adecuadamente por supuestos incorrectos en su formulación. Es esencial que el modelo sea validado para asegurar que las conclusiones a las que se pueda llegar sean las mismas que se obtendrían del sistema real. 
+Todo modelo de simulación debe estar bajo sospecha hasta que se pruebe lo contrario por modelos analíticos, mediciones, o intuición. 
+5.	Tratamiento incorrecto de las condiciones iniciales 
+Generalmente la parte inicial de una corrida de simulación no es representativa del comportamiento de un sistema en estado estable, por lo tanto debe ser descartada. 
+6.	Simulaciones muy cortas 
+Por tratar de ahorrar tiempo de análisis y de computación, las corridas de simulación pueden ser muy cortas. Los resultados en estos casos dependen fuertemente de las condiciones iniciales y pueden no representar al sistema real. El tiempo de corrida adecuado depende de la exactitud deseada (intervalos de confianza) y de la varianza de las cantidades observadas. 
+7.	Generadores de números aleatorios inadecuados 
+Las simulaciones requieren de cantidades aleatorias que son producidas por procedimientos llamados generadores de números aleatorios. Es mejor usar generadores que han sido bien analizados a usar los de uno mismo. Aun buenos generadores presentan problemas. 
+8.	Selección de semillas inadecuadas 
+Los generadores de números aleatorios son procedimientos que dado un numero aleatorio generan otro. 
+El primer numero aleatorio de la secuencia es llamado la semilla y debe ser proporcionada por el analista.  Las semillas para diferentes secuencias deben ser cuidadosamente seleccionadas para mantener independencia entre las secuencias. Los analistas usualmente usan una misma secuencia para diferentes procesos o usan la misma semilla para todas las secuencias. Esto introduce correlación entre los procesos y puede llevar a conclusiones erróneas. 
+II. OTRAS CAUSAS DEL FRACASO DE LOS ANÁLISIS DE SIMULACIÓN 
+ 
+1.	Estimación inadecuada del tiempo para desarrollar el proyecto 
+Es común subestimar el tiempo y el esfuerzo requerido para desarrollar modelos de simulación. Si la simulación es exitosa y produce información útil, sus usuarios quieren incorporar mas funciones, parámetros y detalles. Por el contrario, si no provee de información útil, usualmente se espera que al añadir elementos la puedan hacer útil. En ambos casos el proyecto se extiende mas allá de las proyecciones iniciales. 
+Para proyectos grandes se deben hacer previsiones para incorporara cambios que son inevitables sobre largos periodos de tiempo. 
+2.	Metas inalcanzables 
+La simulación es un proceso largo y complejo y se debe tener claramente definido un conjunto de metas que sean especificas, minuciosas, medibles, y alcanzables. 
+Un ejemplo común de una meta inalcanzable es "modelemos X." Es posible modelar muchas características diferentes de X a muchos niveles de detalle. 
+3.	Mezcla incompleta de habilidades 
+Un proyecto de simulación requiere por lo menos: 
+a.	Liderazgo: Habilidad para motivar, guiar y manejar a los miembros del equipo de simulación. 
+b.	Modelaje y estadísticas: Habilidad para identificar las características claves del sistema y modelarlas  al nivel de detalle requerido. 
+c.	Programación: Habilidad para escribir código entendible y verificable que implemente el modelo correctamente. 
+d.	Conocimiento del sistema modelado: Habilidad para entender el sistema, explicarlo al equipo de modelaje, e interpretar los resultados del modelo en términos de su impacto en el diseño del sistema. 
+4.	Nivel inadecuado de participación de los usuarios 
+Es esencial que el equipo de simulación y los usuarios de la organización estén en constante contacto para intercambiar y discutir ideas. La mayoría de los sistemas evolucionan y cambian con el tiempo y un modelo desarrollado sin la participación de los usuarios raramente resulta exitoso. 
+5.	Documentación inexistente u obsoleta 
+La mayoría de los modelos de simulación se desarrollan en largos periodos de tiempo y continuamente son modificados a medida que el sistema cambia o es mejor comprendido. Su documentación muchas veces es desatendida y rápidamente se vuelve obsoleta. Es recomendable documentar los programas y usar lenguajes que sean fáciles de leer. 
+6.	Inhabilidad para gerenciar el desarrollo de programas de computación grandes 
+Hay muchas herramientas de ingeniería de la programación que permiten vigilar los objetivos del diseño, los requerimientos funcionales, las estructuras de datos y los estimados de progreso. También hay un conjunto de principios de diseño, como diseño de arriba abajo y programación estructurada, para desarrollar grandes proyectos en forma ordenada . Sin el uso de estas herramientas y técnicas es imposible desarrollar exitosamente un modelo de simulación grande. 
+7.	Resultados misteriosos 
+Resultados misteriosos generalmente son debido a errores de programación, supuestos incorrectos en el modelo, o falta de entendimiento del sistema real. Nunca deben ser obviados. 
+III. TERMINOLOGÍA 
+ 
+1.	Variables de Estado 
+El estado del sistema esta caracterizado por el valor que tengan las variables de estado en un instante de tiempo dado. El conjunto de variables de estado debe ser suficiente para el propósito de estudio, y puede diferir en el numero y tipo de variables si los objetivos de la simulación cambian. Si la simulación es parada, puede ser continuada después si y solo si los valores de las variables de estado son conocidos. 
+2.	Evento 
+Un evento es un cambio en el estado del sistema. Una llegada, una salida, etc. 
+3.	Modelos de Tiempo Continuo y de Tiempo Discreto 
+Modelo de Tiempo Continuo 
+Cuando el estado del sistema esta definido para cada instante de tiempo. 
+Modelo de Tiempo Discreto 
+Cuando el estado del sistema esta definido solo para particulares instantes de tiempo. 
+ 
+
+4.	Modelos de Estado Continuo y de Estado Discreto 
+El modelo es de estado continuo o discreto dependiendo de si las variables de estado son continuas o discretas. 
+Modelo de Estado Discreto 	→ 	Modelo de Eventos Discretos 
+Modelo de Estado Continuo → 	Modelo de Eventos Continuos 
+Continuidad de tiempo no implica continuidad de estado y viceversa. 
+ 
+5.	Modelos Determinísticos y Probabilísticos 
+Si los resultados de un modelo pueden predecirse con certeza, el modelo es determinístico; un simulador de contratos colectivos. Si repeticiones con la misma entrada pueden producir resultados distintos entonces el modelo es probabilístico; un simulador de colas. 
+ 
+
+6.	Modelos Estáticos y Dinámicos 
+Un modelo en el que el tiempo no es una variable es estático. Si el sistema cambia con el tiempo el  modelo es dinámico. 
+ E = m c2   	 	 	 	 	 	→ 	Modelo Estático  (materia en energía) 
+Numero de trabajos en cola en un computador. 	→ 	Modelo Dinámico 
+7.	Modelos Lineales y No-Lineales 
+Si la salida es una función lineal de la entrada, el modelo es lineal, de lo contrario es no-lineal. Ejemplo: f (x) = a + bx    vs.    f (x) = a + b x 
+ 
+8.	Modelos Cerrados y Abiertos 
+Si la entrada es externa al modelo e independiente de el, el modelo es abierto. Si el modelo es cerrado no hay entrada externa. Puede depender de los objetivos de la simulación, como se enfoque el problema y los supuestos que se hagan. Por ejemplo: podemos simular el trafico en una ciudad como un sistema cerrado si asumimos que el numero de vehículos permanece constante (no hay arribos ni salidas o arribos = salidas), o como un sistema abierto generando arribos y salidas al exterior. 
+ 
+9.	Modelo Estables e Inestables 
+Si el comportamiento del sistema converge a un estado estable (independientemente del tiempo) el modelo es estable. Un modelo cuyo comportamiento cambia constantemente es inestable. Por ejemplo: en un sistema de taquilla simple tenemos: 
+Intervalo entre llegadas > tiempo de servicio 	→ 	modelo estable 
+Intervalo entre llegadas ≤ tiempo de servicio 
+ 	→ 	modelo inestable. 
+Ejemplo 
+Modelos de sistema de computación generalmente son de tiempo continuo, estado discreto, probabilísticos, dinámicos y no-lineales. Algunos son abiertos y otros cerrados. También pueden ser estables o inestables. 
+IV. SELECCIÓN DEL LENGUAJE DE SIMULACIÓN 
+ 
+1.	Importante 
+La selección incorrecta del lenguaje de simulación puede extender considerablemente el tiempo de ejecución del proyecto, producir estudios incompletos o hacer fracasar el proyecto. 
+2.	Lenguaje de Simulación 
+Lenguajes como SIMULA y SIMSCRIPT ahorran tiempo de desarrollo: tienen facilidades para generar estadísticas, reportes, etc. Permiten al analista concentrarse en aspectos específicos del sistema y no preocuparse por aspectos generales a todas las simulaciones. El código es modular, fácil de leer y proveen buena detección de errores. 
+3.	Lenguaje de Propósito General 
+C, Pascal, Fortran. Se usan cuando el analista esta familiarizado con el lenguaje, no hay tiempo de aprender un lenguaje de simulación o no esta disponible. Proveen flexibilidad, eficiencia y portabilidad. 
+4.	Extensiones a Lenguajes de Propósito General 
+Lenguajes de propósito general extendidos con un conjunto de rutinas comúnmente requeridas en simulación. Ejemplo: GASP para FORTRAN. 
+5.	Paquetes de Simulación 
+QNET4 y RESQ permiten definir el modelo usando un dialogo. Pueden ahorrar mucho tiempo pero son muy inflexibles. Proveen solo cosas que fueron previstas por los desarrolladores. 
+ 
+V. TIPOS DE SIMULACIÓN 
+ 
+1.	Monte Carlo 
+Simulación estática o sin eje de tiempo. Se usa para modelar fenómenos probabilísticos que no dependen del tiempo o para evaluar expresiones no-probabilísticas con métodos probabilísticos. Esta definición es mas restrictiva que la que dan otros autores para los cuales simulación Monte Carlo es cualquier simulación que use números aleatorios. 
+2.	Simulación por trazas 
+Una traza es un registro de eventos ordenados por tiempo de un sistema real. Son muy usadas para analizar diferentes alternativas. Las trazas deben ser independientes del sistema bajo estudio. 
+Ejemplo 
+Para comparar diferentes esquemas de administración de memoria en un computador, se puede obtener del sistema una traza de paginas referenciadas por programas claves. Esta traza puede ser usada para ajustar los parámetros (tamaño de pagina) de un algoritmo de administración particular o para comparar diferentes algoritmos (FIFO, aleatorio, menos usada recientemente, etc.). 
+Ventajas 
+a)	Credibilidad: Una traza tiene mas credibilidad que una generación aleatoria. 
+b)	Facilidad para validar: Para obtener la traza hay que monitorear al sistema. Durante este monitoreo se pueden observar otras características del sistema que luego pueden usarse para validar la simulación. 
+c)	Menos aleatoriedad: Una traza es una entrada determinística. Si la simulación se repite, la traza es la misma pero la salida puede diferir por aleatoriedad en otros componentes del modelo. Hay menos varianza en las salidas y por lo tanto se requieren menos repeticiones para obtener la confianza estadística deseada. 
+d)	Comparaciones mas justas: Una traza permite comparar diferentes alternativas con la misma entrada. 
+Desventajas 
+a)	Complejidad y detalle: Puede requerir una simulación mas detallada del sistema. Por ejemplo: en la simulación de un sistema de disco podemos asumir tiempo de acceso exponencial a sectores, o tomar trazas de los sectores accesados e incluir cómputos del tiempo de rotación del disco y movimiento de cabezales ⇒ ¡mas cómputos y detalle! 
+b)	Trazas finitas y representatividad: En pocos minutos se puede obtener una traza detallada larga que puede no ser representativa en todos los momentos. 
+c)	Validación: Las trazas pueden producir diferentes resultados en diferentes alternativas. Deben usarse varias trazas distintas para validar los resultados. 
+d)	Cambios de trazas: Si se desea estudiar un sistema bajo condiciones distintas, no es posible 
+ 	modificar las trazas, y hay que tener trazas características para cada caso. 
+3.	Simulación por Eventos Discretos 
+Una simulación que usa un modelo de estado discreto del sistema es llamada una simulación por eventos discretos. Todas las simulaciones de eventos discretos tienen una estructura común e incluyen los siguientes componentes: 
+a)	Manejador de eventos: Mantiene los eventos que esperan por suceder. Es de uno de los componentes de simulación mas usados. Es ejecutado antes de la simulación de cada evento y posiblemente durante la simulación de un evento para programar nuevos eventos. Su implementación debe ser cuidadosa ya que tiene un fuerte impacto sobre la eficiencia del simulador. 
+b)	Reloj de simulación y mecanismo de avance de tiempo: Toda simulación tiene una variable global que representa el tiempo simulado. El manejador es el encargado de avanzar este tiempo. Hay dos formas de hacer esto: 
+ Método de tiempo unitario: Incrementa el tiempo en pequeños pasos y se chequea si hay eventos que pueden ocurrir. Generalmente no se usa. 
+ 	Método por eventos: Incrementa el tiempo automáticamente al tiempo de evento mas próximo a ocurrir. 
+c)	Variables de estado del sistema: Son variables globales que describen el estado del sistema. 
+d)	Rutinas de eventos: Cada tipo de evento es simulado por su rutina. Estas rutinas actualizan las variables de estado y generan nuevos eventos. 
+e)	Rutinas de entrada: Son para obtener los parámetros del modelo como tiempo promedio entre llegadas, tiempo promedio de servicio, etc. Deben ejecutarse al comienzo de la simulación para liberar al usuario ya que generalmente las simulaciones consumen tiempo. Permiten variar los parámetros. Cada conjunto de valores de entrada define una iteración que quizás deba ser repetida varias veces con diferentes semillas. Cada ejecución de la simulación consiste de varias iteraciones, y cada iteración consiste de varias repeticiones. 
+f)	Generador de reportes: Rutinas para producir las salidas al final de la simulación. 
+g)	Rutinas de inicialización: Fijan el estado inicial del sistema e inicializan los generadores de secuencias de números aleatorios. 
+h)	Rutinas de trazado: Imprimen resultados intermedios durante la simulación. Sirven para depurar el simulador. 
+i)	Manejo dinámico de memoria: Durante la simulación se crean nuevas entidades y las viejas son destruidas. Esto requiere una periódica colección de basura. Si esto no lo provee el lenguaje, el programador debe escribir código para manejo dinámico de memoria. 
+j)	Programa principal: Agrupa todas las rutinas. 
+4.	Simulación Continua 
+Los modelos de simulación continua, donde las variables de estado son continuas, son descritos generalmente mediante ecuaciones diferenciales y posiblemente ecuaciones algebraicas.  Muchas simulaciones por eventos discretos incluyen subsistemas continuos y viceversa. Se puede hacer en computadores analógicos o en computadores digitales. 
+Computadores analógicos son maquinas de propósito especial: 
+a)	operan continuamente sobre todas las variables en tiempo real 
+b)	son dispositivos paralelos 
+c)	incluyen circuiteria para sumatorias, multiplicación, integración, y generación de funciones 
+d)	no tienen capacidades de almacenamiento o son muy limitadas 
+e)	dan resultados inmediatamente 
+f)	no pueden manejar variables muy grandes o muy pequeñas requiriendo cambio de escala 
+g)	las variables de entrada son continuas y esto requiere conversión de voltajes analógicos a números y viceversa. 
+Computadoras digitales son maquinas de propósito general: 
+a)	operaciones aritméticas y lógicas son efectuadas secuencialemente 
+b)	variables de entrada son discreteas 
+c)	pueden manejar números muy grandes o muy pequeños 
+d)	integración matemática directa no es posible y se hace usando métodos numéricos (ver el ejemplo siguiente) 
+e)	pueden almacenar gran cantidad de datos 
+f)	son relativamente lentas 
