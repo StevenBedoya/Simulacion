@@ -1,10 +1,4 @@
 
-# coding: utf-8
-
-# In[2]:
-
-get_ipython().magic('matplotlib inline')
-
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -12,7 +6,7 @@ import math
 from scipy.integrate import quad
 
 l=3
-k=8
+k=10
 a=[]
 acum=[]
 invepoi=[]
@@ -25,6 +19,7 @@ def poisson():
 plt.plot(poisson(),marker="o",linestyle="--")
 plt.show()
 plt.subplot(3,1,2)
+
 def acumupoisson():
     g=0
     for i in range(k):
@@ -35,6 +30,7 @@ def acumupoisson():
 plt.plot(acumupoisson())
 plt.show()
 plt.subplot(3,1,3)
+
 def aleatorios(al):
     xo=al
     ga=[]
@@ -45,6 +41,7 @@ def aleatorios(al):
         ga.append(ui)
     #print(ga)
     return ga
+
 def inverpoisson():
     ga=aleatorios(7)
     for i in range(k):
@@ -54,12 +51,11 @@ def inverpoisson():
                 break
     print("Tasa de llegada",invepoi)
     return invepoi
+
+
 inp=inverpoisson()
 plt.plot(inp)
 plt.show()
-
-
-    
 
 
 #normal
@@ -78,7 +74,6 @@ def invnormal():
         if(inver<0):
             inver=0
         invn.append(inver)
-    print("Atendidos x servidor",invn)
     return invn
 gg=invnormal()
 
@@ -94,14 +89,13 @@ def cliencola(ll):
         if ll<0:
             ll=0
         cc.append(ll)
-    print("Clientes en cola",cc)
     return cc
 x=cliencola(ll)
 
         
 
 
-#numero de horas=8
+#numero de horas=6
 print "t", "  N llegada","  N en cola","  Atendidosxservidor","  Cliente en Sistema"
 print("  ")
 for i in range(k):
@@ -112,7 +106,7 @@ def tpcola():
         
         s=invepoi[i]+s
     #print(s)
-    z=(8/float(s))*60
+    z=(6/float(s))*60
     print("Tiempo promedio en cola:","{0:.2f}".format(z), "Minutos")
     return s
 f=tpcola()   
@@ -121,7 +115,7 @@ def tpsistema():
     for i in range(k):
         ss=(invepoi[i]+x[i])+ss
     #print(s)
-    zi=(8/float(ss))*60
+    zi=(6/float(ss))*60
     print("Tiempo promedio en sistema:","{0:.2f}".format(zi), "Minutos")
     return ss
 fg=tpsistema()  
@@ -130,13 +124,12 @@ def tpservidor():
     for i in range(k):
         ser=gg[i]+ser
     #print(s)
-    ze=(8/float(ser))*60
+    ze=(6/float(ser))*60
     print("Tiempo promedio en servidor:","{0:.2f}".format(ze), "Minutos")
     return ser
 fk=tpservidor() 
 
 
-# In[ ]:
 
 
 
